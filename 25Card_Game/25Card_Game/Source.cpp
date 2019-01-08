@@ -39,7 +39,7 @@ void main()
 
 	srand((unsigned)time(NULL));//random the number
 	options();//calling the function
-
+	
 }
 
 char rand_int(char num)
@@ -79,8 +79,8 @@ void draw_a_card() /*void because we aren't returning a value*/
 			printf("Player %d\n", i + 1);
 			for (int x = 0; x < DRAW; x++)//dealing 5 cards
 			{
-
-				player[i].playerCard[r] = rand_int(CARDS); //Generating a number for the random number and storing in the sttruct position for the player card
+				
+				player[i].playerCard[r] =rand_int(CARDS); //Generating a number for the random number and storing in the sttruct position for the player card
 
 				switch (player[i].playerCard[r] % 13)//to convert each card number to a card rank
 				{
@@ -142,14 +142,14 @@ void draw_a_card() /*void because we aren't returning a value*/
 					printf("H ");
 					break;
 				default:
-					break;
+					break; 
 				}//switch
 
 				fprintf(cardgame, "%d ", player[i].playerCard[r]);//printing card out to the txt file in number format
 			}//for card
-
+			
 			printf("Player Score = %d\n", player[i].playerScore[r]);//printing out score to screen and txt file
-			fprintf(cardgame, "  %d\n", player[i].playerScore[r]);
+			fprintf(cardgame,"  %d\n", player[i].playerScore[r]);
 			printf("\n");
 
 			fprintf(cardgame, "\n");
@@ -222,12 +222,12 @@ void draw_a_card() /*void because we aren't returning a value*/
 			default:
 				break;
 			}//switch
-
+			
 			//printf("%d",player[x].playerCard[r]);
 
-			fprintf(cardgame, "\nTrump Card %d \n", player[x].trumpCard[r]);//Generating a number for the random number and storing in the sttruct position for the trunmp card
+			fprintf(cardgame, "\nTrump Card %d \n",  player[x].trumpCard[r]);//Generating a number for the random number and storing in the sttruct position for the trunmp card
 
-
+			
 			/*printf("\n\nPlease pick between players to begin?");//started tom try and get the user to pick the pklayer to begin game
 			scanf("%d", player[x]);*/
 
@@ -247,12 +247,13 @@ void draw_a_card() /*void because we aren't returning a value*/
 	{
 		printf("Please Try again to enter");
 	}//else
-
+	
 }
 
 void openingFile()
 {
-	char c[1000];
+	char c[CARDS];
+	int change;
 	FILE *fptr;
 	if ((fptr = fopen("NewGame.txt", "r")) == NULL)
 	{
@@ -260,11 +261,17 @@ void openingFile()
 		// Program exits if file pointer returns NULL.
 		exit(1);
 	}//if
-	else
+	else 
 	{
-		printf("Game is Loading");
-		fscanf(fptr, "%[^\n]", c);
-		printf("Data from the file:\n%s", c);
+		printf("Game is Loading\n");
+		change = fscanf(fptr, "%[^\n]", c);
+
+			printf("Data from the file:\n%s\n", c);
+
+	
+			
+
+		
 		// reads text until newline 
 	}//else
 	fclose(fptr);
@@ -303,7 +310,7 @@ void options()
 			break;
 
 		default://If correct number wasnt selected
-			printf("Please Selection a Correct Option\n");
+			printf("Please Selection a Correct Option!!!!!\n");
 			break;
 		}
 		printf("\n\nSelect Options\n1 to New Game\n2 for Load Game\n3 for Save Game\n0 for Exit\n");
